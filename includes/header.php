@@ -1,30 +1,26 @@
 <?php
-// Start the session
-if(!isset($_SESSION)) {
+// بدء الجلسة إذا لم تكن قد بدأت بالفعل
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// Determine the language, default to English
-if(isset($_SESSION['lang'])) {
-    $lang = $_SESSION['lang'];
-} else {
-    $lang = 'en';
-}
+// تحديد اللغة، الافتراضية هي الإنجليزية
+$lang = isset($_SESSION['lang']) ? $_SESSION['lang'] : 'en';
 
-// Load the language file
+// تحميل ملف اللغة
 $langFile = __DIR__ . '/../lang/' . $lang . '.php';
 if(file_exists($langFile)) {
     $translations = include($langFile);
 } else {
-    // Fallback to English if language file not found
+    // الرجوع إلى الإنجليزية إذا لم يتم العثور على ملف اللغة
     $translations = include(__DIR__ . '/../lang/en.php');
 }
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $lang; ?>">
+<html lang="<?php echo htmlspecialchars($lang); ?>">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $translations['title']; ?></title>
+    <title><?php echo htmlspecialchars($translations['title']); ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -34,33 +30,38 @@ if(file_exists($langFile)) {
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php"><?php echo $translations['title']; ?></a>
+            <a class="navbar-brand" href="index.php"><?php echo htmlspecialchars($translations['title']); ?></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="<?php echo htmlspecialchars($translations['select_language']); ?>">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <!-- Language Selection Dropdown -->
+                    <!-- Dropdown اختيار اللغة -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" 
+                           data-bs-toggle="dropdown" aria-expanded="false">
                             <?php
-                            // Display current language
+                            // عرض اللغة الحالية
                             switch($lang) {
                                 case 'en':
-                                    echo $translations['english'];
+                                    echo htmlspecialchars($translations['english']);
                                     break;
                                 case 'fr':
-                                    echo $translations['french'];
+                                    echo htmlspecialchars($translations['french']);
                                     break;
                                 case 'ar':
-                                    echo $translations['arabic'];
+                                    echo htmlspecialchars($translations['arabic']);
                                     break;
                                 default:
-                                    echo $translations['english'];
+                                    echo htmlspecialchars($translations['english']);
                             }
                             ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="languageDropdown">
-                            <li><a class="dropdown-item" href="index.php?lang=en"><?php echo $translations['english']; ?></a></li>
-                            <li><a class="dropdown-item" href="index.php?lang=fr"><?php echo $translations['french']; ?></a></li>
-                            <li><a class="dropdown-item" href="index.php?lang=ar"><?php echo $translations['arabic']; ?></a></li>
+                            <li><a class="dropdown-item" href="index.php?lang=en"><?php echo htmlspecialchars($translations['english']); ?></a></li>
+                            <li><a class="dropdown-item" href="index.php?lang=fr"><?php echo htmlspecialchars($translations['french']); ?></a></li>
+                            <li><a class="dropdown-item" href="index.php?lang=ar"><?php echo htmlspecialchars($translations['arabic']); ?></a></li>
                         </ul>
                     </li>
                 </ul>
