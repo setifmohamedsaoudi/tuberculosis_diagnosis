@@ -31,10 +31,10 @@ return [
     'caverns' => 'Cavities',
     'infiltrates' => 'Infiltrates in the upper lobes and upper segments of the lower lobes',
     'consolidations' => 'Consolidations (uneven or confluent)',
-    'adenopathies' => 'Mediastinal and hilar lymphadenopathy',
+    'mediastinal_hilar_lymphadenopathy' => 'Mediastinal and hilar lymphadenopathy',
     'miliary_pattern' => 'Miliary pattern',
-    'see_also_medical_imaging' => 'See also Medical Imaging, Chapter 3.',
-    'pdst_ngs' => 'pDST (and NGS)',
+    'cXR_chapter_reference' => 'See also Medical Imaging, Chapter 3.',
+    'pDST_ngs' => 'pDST (and NGS)',
     'perform_pdst_ngs' => 'A pDST and, if available, next-generation sequencing (NGS) must be performed in all patients with TB-MDR/RR to detect potential resistance to bedaquiline, linezolid, and other drugs not tested by RMTs.',
     'nom' => 'Name',
     'age' => 'Age',
@@ -42,10 +42,6 @@ return [
     'algorithm_not_valid' => 'The algorithm is not valid for patients under 10 years old.',
     'eligible_for_diagnosis' => 'The patient is eligible for the diagnostic algorithm.',
     'diagnosis_results' => 'Diagnosis Results',
-    'patient_information' => 'Patient Information',
-    'enter_symptoms' => 'Enter Symptoms',
-    'no_symptoms_suspect_tb' => 'No sufficient signs to suspect tuberculosis.',
-    'suspect_tb' => 'Tuberculosis is suspected. Please perform the necessary tests.',
-    'choose_symptoms' => 'Choose the symptoms you are experiencing:',
+    // أضف المزيد من الترجمات حسب الحاجة...
 ];
 ?>
